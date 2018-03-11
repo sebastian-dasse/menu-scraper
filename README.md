@@ -27,7 +27,7 @@ To install on Windows do the following:
 2. Open the git bash.
 2. Install [virtualenv](https://virtualenv.pypa.io/en/stable/installation/). The preferred way to do this is through *pip*, which comes with your Python installation: `[sudo] pip install virtualenv`.
 3. Create a virtualenv: `virtualenv ~/my_env`.
-4. Activate *my_env*: `virtualenv ~/my_env/Scripts/activate`.
+4. Activate *my_env*: `source ~/my_env/Scripts/activate`.
 5. To ensure that *my_env* was indeed activated you can check, that the Python version from within your virtualenv is chosen: `which python`.
 6. Install PyPDF2 inside your virtualenv: `pip install PyPDF2`.
 7. To ensure that PyPDF2 was sucessfully installed check the output of: `pip list`.
