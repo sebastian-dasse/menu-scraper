@@ -1,4 +1,4 @@
-# wandel-parser
+# menu-scraper
 
 Still work in progress.
 
