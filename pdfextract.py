@@ -42,9 +42,9 @@ def write_binary(path, output):
 def __parse_args():
   parser = ArgumentParser(description="This simple tool facilitates downloading PDF files from the web and extracting plain text from PDF files.")
   parser.add_argument("path",
-    help="the path to the PDF file. This may be an absolute path to a file in the filesystem or an URL to a file accessible via HHTP.")
+    help="the path to the PDF file. This may be an absolute path to a file in the filesystem or an URL to a file accessible via HHTP")
   parser.add_argument("-o", dest="output",
-    help="the path to write the PDF to.")
+    help="the path to write the PDF to")
   return parser.parse_args()
 
 
