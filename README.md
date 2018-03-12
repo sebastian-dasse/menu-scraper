@@ -5,7 +5,7 @@ Still work in progress.
 ## Open tasks
 - [x] scrape pdf url from website
 - [x] read pdf from url
-- [ ] parse wandel menu
+- [x] parse wandel menu
 - [ ] complete documentation
 
 ## Prerequisites
