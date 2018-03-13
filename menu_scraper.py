@@ -87,17 +87,25 @@ def print_week_s_menu():
   print_meals(title, meals_by_category)
 
 
-def print_today_s_menu():
-  day = int(datetime.now().strftime("%w")) - 1
+def print_weekday_s_menu(day):
+  day = int(day) % len(week_days)
   title, meals_by_category = fetch_menu()
   print_title(title)
   print_day_s_meals(day, meals_by_category)
 
 
+def print_today_s_menu():
+  day = int(datetime.now().strftime("%w")) - 1
+  print_weekday_s_menu(day)
+
+
 def main():
   import sys
   if len(sys.argv) > 1 and sys.argv[1] == "-d":
-    print_today_s_menu()
+    if len(sys.argv) > 2:
+      print_weekday_s_menu(sys.argv[2])
+    else:
+      print_today_s_menu()
   else:
     print_week_s_menu()
 
