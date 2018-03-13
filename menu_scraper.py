@@ -6,6 +6,7 @@ TODO: comment
 
 import pdfextract
 import wandel_parser as parser
+from datetime import datetime
 
 
 week_days = [
@@ -43,33 +44,62 @@ def extract_text(menu_path):
   return pdfextract.extract_text(menu_path)
 
 
-def extract_meals(text):
+def extract_meals(path):
+  text = extract_text(path)
   return parser.extract_meals(text)
 
 
-def print_meals(title, meals_by_category):
+def fetch_menu():
+  path = menu_path()
+  title = menu_title(path)
+  meals_by_category = extract_meals(path)
+  return (title, meals_by_category)
+
+
+def print_title(title):
   print "+-" + "-" * len(title) + "-+"
   print "| " + title + " |"
   print "+-" + "-" * len(title) + "-+"
   print
-  for num, day in enumerate(week_days):
-    print "--[ " + day + " ]----------------------"
-    print "   --" + "-" * len(day)
-    for category, meals in meals_by_category.iteritems():
-      print category + " " + str(meals[num])
-    print
 
 
-def print_menu():
-  path = menu_path()
-  title = menu_title(path)
-  text = extract_text(path)
-  meals_by_category = extract_meals(text)
+def print_week_day(day):
+  day_name = week_days[day]
+  print "--[ " + day_name + " ]----------------------"
+  print "   --" + "-" * len(day_name)
+
+
+def print_day_s_meals(day, meals_by_category):
+  print_week_day(day)
+  for category, meals in meals_by_category.iteritems():
+    print category + " " + str(meals[day])
+  print
+
+
+def print_meals(title, meals_by_category):
+  for day in xrange(len(week_days)):
+    print_day_s_meals(day, meals_by_category)
+
+
+def print_week_s_menu():
+  title, meals_by_category = fetch_menu()
+  print_title(title)
   print_meals(title, meals_by_category)
 
 
+def print_today_s_menu():
+  day = int(datetime.now().strftime("%w")) - 1
+  title, meals_by_category = fetch_menu()
+  print_title(title)
+  print_day_s_meals(day, meals_by_category)
+
+
 def main():
-  print_menu()
+  import sys
+  if len(sys.argv) > 1 and sys.argv[1] == "-d":
+    print_today_s_menu()
+  else:
+    print_week_s_menu()
 
 
 if __name__ == '__main__':
