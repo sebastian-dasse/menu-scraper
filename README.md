@@ -35,5 +35,5 @@ To install on Windows do the following:
     1. Run `./menu_scraper.py` to print the menu of the current week to console..
     2. Run `./menu_scraper.py -d` to print the menu of today to console.
     3. Run `./menu_scraper.py -d <weekday>` to print the menu of the specified weekday to console, where `<weekday>` is in a number in [0,4].
-10. Should you just want to use the PDF extraction functionality, you are free to use pdfextract seperately. Running `pdfextract -h` will show its usage.
+10. Should you just want to use the PDF extraction functionality, you are free to use pdfextract seperately. Running `./pdfextract.py -h` will show its usage.
 11. To deactivate *my_env* when you are done: `deactivate`.
