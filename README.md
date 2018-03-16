@@ -32,8 +32,8 @@ To install on Windows do the following:
 7. Install PyPDF2 inside your virtualenv: `pip install PyPDF2`.
 8. To ensure that PyPDF2 was sucessfully installed check the output of: `pip list`.
 9. To run the menu-scraper you have the following options:
-  - Run `./menu_scraper.py` to print the menu of the current week to console..
-  - Run `./menu_scraper.py -d` to print the menu of today to console.
-  - Run `./menu_scraper.py -d <weekday>` to print the menu of the specified weekday to console, where `<weekday>` is in a number in [0,4].
+    1. Run `./menu_scraper.py` to print the menu of the current week to console..
+    2. Run `./menu_scraper.py -d` to print the menu of today to console.
+    3. Run `./menu_scraper.py -d <weekday>` to print the menu of the specified weekday to console, where `<weekday>` is in a number in [0,4].
 10. Should you just want to use the PDF extraction functionality, you are free to use pdfextract seperately. Running `pdfextract -h` will show its usage.
 11. To deactivate *my_env* when you are done: `deactivate`.
