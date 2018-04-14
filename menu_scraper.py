@@ -4,9 +4,11 @@
 TODO: comment
 """
 
+from argparse import ArgumentParser
+from datetime import datetime
+
 import pdfextract
 import wandel_parser as parser
-from datetime import datetime
 
 
 week_days = [
@@ -16,6 +18,7 @@ week_days = [
   "Donnerstag",
   "Freitag",
 ]
+num_week_days = len(week_days)
 
 
 __sample_path = "D:/Downloads/Mittagskarte-Wandel-1-KW-10.pdf"
@@ -77,7 +80,7 @@ def print_day_s_meals(day, meals_by_category):
 
 
 def print_meals(title, meals_by_category):
-  for day in xrange(len(week_days)):
+  for day in xrange(num_week_days):
     print_day_s_meals(day, meals_by_category)
 
 
@@ -88,24 +91,31 @@ def print_week_s_menu():
 
 
 def print_weekday_s_menu(day):
-  day = int(day) % len(week_days)
+  day = int(day) % num_week_days
   title, meals_by_category = fetch_menu()
   print_title(title)
   print_day_s_meals(day, meals_by_category)
 
 
-def print_today_s_menu():
-  day = int(datetime.now().strftime("%w")) - 1
-  print_weekday_s_menu(day)
+def today():
+  return int(datetime.now().strftime("%w")) - 1
+
+
+def _parse_args():
+  parser = ArgumentParser(description="TODO.")
+  parser.add_argument("-d", dest="day", type=int, nargs="?",
+    const=-1, default=num_week_days, action="store",
+    help="only print the menu of the given day, where 0 indicates Monday and no value means today")
+  return parser.parse_args()
 
 
 def main():
-  import sys
-  if len(sys.argv) > 1 and sys.argv[1] == "-d":
-    if len(sys.argv) > 2:
-      print_weekday_s_menu(sys.argv[2])
-    else:
-      print_today_s_menu()
+  args = _parse_args()
+  
+  if      args.day < 0:
+    print_weekday_s_menu(today())
+  elif args.day < num_week_days:
+    print_weekday_s_menu(args.day)
   else:
     print_week_s_menu()
 
