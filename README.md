@@ -6,7 +6,8 @@ Still work in progress.
 - [x] scrape pdf url from website
 - [x] read pdf from url
 - [x] parse wandel menu
-- [ ] code cleanup
+- [x] code cleanup
+- [ ] add csv option
 - [ ] complete documentation
 
 ## Prerequisites
