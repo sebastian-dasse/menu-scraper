@@ -11,7 +11,7 @@ import urllib
 
 root_url     = "http://www.wandel-restaurant.de/"
 start_path   = "restaurants/bernhard-weiss-str/wandel8/start.html"
-menu_pattern = r'href="(.+/Mittagskarte-Wandel-1.+\.pdf)"'
+menu_pattern = r'href="(.+/(?:Speiseplan|Mittagskarte-Wandel-1).+\.pdf)"'
 
 num_week_days = 5
 
