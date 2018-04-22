@@ -77,7 +77,6 @@ def print_week_s_menu():
 
 
 def print_weekday_s_menu(day):
-  day = int(day) % num_week_days
   title, meals_by_category = fetch_menu()
   print_title(title)
   print_day_s_meals(day, meals_by_category)
@@ -97,11 +96,10 @@ def parse_args():
 
 def main():
   args = parse_args()
+  day = today() if args.day < 0 else args.day
   
-  if      args.day < 0:
-    print_weekday_s_menu(today())
-  elif args.day < num_week_days:
-    print_weekday_s_menu(args.day)
+  if 0 <= day < num_week_days:
+    print_weekday_s_menu(day)
   else:
     print_week_s_menu()
 
