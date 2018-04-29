@@ -57,17 +57,25 @@ def menu_title(menu_path):
 
 def extract_meals(text):
   menu = {}
+  error_count = 0
   for chunk in re.split(category_delimiter_pattern, text):
     if re.match(category_title_pattern, chunk):
-      title_line, meal_chunk = chunk.split("\n", 1)
-      title = _normalised_title(title_line)
-      
-      if title in menu:
-        continue
-      
-      meal_chunks = re.split(meal_delimiter_pattern, meal_chunk)
-      missing = [""] * (len(categories) - len(meal_chunks))
-      menu[title] = ([meal.replace("\n", "") for meal in meal_chunks] + missing)[:num_week_days]
+      try:
+        title_line, meal_chunk = chunk.split("\n", 1)
+        title = _normalised_title(title_line)
+        
+        if title in menu:
+          continue
+        
+        meal_chunks = re.split(meal_delimiter_pattern, meal_chunk)
+        missing = [""] * (len(categories) - len(meal_chunks))
+        menu[title] = ([meal.replace("\n", "") for meal in meal_chunks] + missing)[:num_week_days]
+
+      except ValueError:
+        error_count += 1
+
+  if error_count > 0:
+    print "There were " + str(error_count) + " while parsing the menu"
 
   return menu
 
