@@ -7,7 +7,7 @@ Still work in progress.
 - [x] read pdf from url
 - [x] parse wandel menu
 - [x] code cleanup
-- [ ] add csv option
+- [x] add json option
 - [ ] complete documentation
 
 ## Prerequisites
